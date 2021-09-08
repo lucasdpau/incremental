@@ -15,7 +15,7 @@ const ResourceList = () => {
         { name: 'Amino Acids', amount: Math.floor(GameState.aminoCount), unlocked: true },
     ];
 
-    const resourceListItems = (list: any[]) => {
+    const resourceListItems = (list: Array<any>) => {
         const items = list.map(resource => {
             if (resource.unlocked === false) return <></>;
             return (

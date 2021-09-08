@@ -18,6 +18,11 @@ const App = () => {
 		// remove resources cost
 	};
 
+	const handlePeptideBondsButton = () => {
+		Upgrades.setPeptideBonds(true);
+		// remove costs
+	};
+
 	useEffect(() => {
 		// loop to auto increment values
 		const intervalId = setInterval(() => GameState.applyDeltas(Deltas), GAME_CONFIG.TICK_DURATION);

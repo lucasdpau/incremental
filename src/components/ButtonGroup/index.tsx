@@ -52,6 +52,22 @@ const ButtonGroup = (props: IBGroup) => {
 		GameState.setWaterCount((prev: number) => prev + 1);
 	};
 
+	const handleAminoAcidButton = () => {
+		if (GameState.hydrogenCount < 2 || GameState.oxygenCount < 1) return;
+		GameState.setCarbonCount((prev: number): number => prev - 3);
+		GameState.setHydrogenCount((prev: number): number => prev - 7);
+		GameState.setNitrogenCount((prev: number): number => prev - 1);
+		GameState.setOxygenCount((prev: number): number => prev - 2);
+		GameState.setAminoCount((prev: number): number => prev + 1);
+	};
+
+	const handleFattyAcidButton = () => {
+		if (GameState.hydrogenCount < 2 || GameState.oxygenCount < 1) return;
+		GameState.setCarbonCount((prev: number): number => prev - 18);
+		GameState.setHydrogenCount((prev: number): number => prev - 36);
+		GameState.setOxygenCount((prev: number): number => prev - 2);
+		// GameState.setFa  ((prev: number): number => prev + 1);
+	};
 
 	const BUTTONS = [
 		{ label: 'Create a proton', onClick: () => GameState.setProtonCount((prev: number): number => prev + 1), rendered: true },
@@ -62,10 +78,11 @@ const ButtonGroup = (props: IBGroup) => {
 		{ label: 'Create an oxygen atom', onClick: handleCreateOxygenButton, rendered: Upgrades.electrons },
 		{ label: 'Create proton generator', onClick: handleCreateProtonGen, rendered: Upgrades.electrons },
 		{ label: 'Create water molecule', onClick: handleCreateWaterButton, rendered: Upgrades.covalentBonds },
+		{ label: 'Create amino acid', onClick: handleAminoAcidButton, rendered: Upgrades.covalentBonds },
 	];
 
 
-	const renderButtons = (buttons: any[]) => {
+	const renderButtons = (buttons: Array<any>) => {
 		const buttonGroup = buttons.map(ele => {
 			return (
 				<Button

@@ -1,4 +1,5 @@
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import { IDeltas } from '../AutoDeltas';
 
 interface IGSContext {
     applyDeltas: (deltas: any) => void;
@@ -50,12 +51,13 @@ export const GameStateContextProvider = (props: any) => {
     const [peptideCount, setPeptideCount] = useState(0);
     const [proteinCount, setProteinCount] = useState(0);
 
-    const applyDeltas = (deltas: any) => {
+    const applyDeltas = (deltas: IDeltas) => {
         setProtonCount(prev => prev + deltas.protons);
         setNeutronCount(prev => prev + deltas.neutrons);
         setHydrogenCount(prev => prev + deltas.hydrogen);
         setCarbonCount(prev => prev + deltas.carbon);
         setOxygenCount(prev => prev + deltas.oxygen);
+        setPhosphorusCount(prev => prev + deltas.phosphorus);
         setWaterCount(prev => prev + deltas.water);
         setAminoCount(prev => prev + deltas.amino);
         setFattyAcidCount(prev => prev + deltas.fatty);

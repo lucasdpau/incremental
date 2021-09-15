@@ -43,12 +43,12 @@ const App = () => {
 				<Button
 					label='Electrons'
 					onClick={handleElectronButton}
-					disabled={Upgrades.electrons}
+					hidden={Upgrades.electrons}
 				/>
 				<Button
 					label='Covalent Bonds'
 					onClick={handleCovalentButton}
-					disabled={Upgrades.covalentBonds}
+					hidden={Upgrades.covalentBonds}
 				/>
 			</div>
 		</div>

@@ -1,18 +1,23 @@
 import React, { useContext } from 'react';
-import { GameStateContext } from '../../contexts/GameState';
+import { GameStateContext, UpgradesContext } from '../../contexts';
 
-const ResourceList = () => {
+interface IResources {
+    resourceList: Array<any>;
+}
+
+const ResourceList = (props: any) => {
     const GameState = useContext(GameStateContext);
+    const Upgrades = useContext(UpgradesContext);
 
     const RESOURCE_LIST = [
-        { name: 'Protons', amount: Math.floor(GameState.protonCount), unlocked: true },
-        { name: 'Neutrons', amount: Math.floor(GameState.neutronCount), unlocked: true },
-        { name: 'Hydrogen', amount: Math.floor(GameState.hydrogenCount), unlocked: true },
-        { name: 'Carbon', amount: Math.floor(GameState.carbonCount), unlocked: true },
-        { name: 'Nitrogen', amount: Math.floor(GameState.nitrogenCount), unlocked: true },
-        { name: 'Oxygen', amount: Math.floor(GameState.oxygenCount), unlocked: true },
-        { name: 'Water', amount: Math.floor(GameState.waterCount), unlocked: true },
-        { name: 'Amino Acids', amount: Math.floor(GameState.aminoCount), unlocked: true },
+        { name: 'proton', label: 'Protons', amount: Math.floor(GameState.protonCount), unlocked: true },
+        { name: 'neutron', label: 'Neutrons', amount: Math.floor(GameState.neutronCount), unlocked: true },
+        { name: 'hydrogen', label: 'Hydrogen', amount: Math.floor(GameState.hydrogenCount), unlocked: Upgrades.electrons },
+        { name: 'carbon', label: 'Carbon', amount: Math.floor(GameState.carbonCount), unlocked: Upgrades.covalentBonds },
+        { name: 'nitrogen', label: 'Nitrogen', amount: Math.floor(GameState.nitrogenCount), unlocked: true },
+        { name: 'oxygen', label: 'Oxygen', amount: Math.floor(GameState.oxygenCount), unlocked: true },
+        { name: 'water', label: 'Water', amount: Math.floor(GameState.waterCount), unlocked: true },
+        { name: 'amino', label: 'Amino Acids', amount: Math.floor(GameState.aminoCount), unlocked: true },
     ];
 
     const resourceListItems = (list: Array<any>) => {
@@ -20,7 +25,7 @@ const ResourceList = () => {
             if (resource.unlocked === false) return <></>;
             return (
                 <li>
-                    {resource.name}: {resource.amount}
+                    {resource.label}: {resource.amount}
                 </li>
             )
         });

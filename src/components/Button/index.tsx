@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ButtonMouseOverPopup } from '..';
+import { IPopup } from '../ButtonMouseOverPopup';
 import './styles.css';
 
 interface IButton {
@@ -7,7 +8,7 @@ interface IButton {
     hidden?: boolean;
     onClick: (arg?: any) => void;
     label: string;
-    popUpData: any;
+    popUpData: IPopup;
 };
 
 const Button = (props: IButton) => {

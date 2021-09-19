@@ -7,7 +7,7 @@ import { GAME_CONFIG } from './constants';
 const App = () => {
 	const GameState = useContext(GameStateContext);
 	const Upgrades = useContext(UpgradesContext);
-	
+
 	useEffect(() => {
 		// loop to auto increment values
 		const intervalId = setInterval(() => GameState.applyDeltas(Deltas), GAME_CONFIG.TICK_DURATION);
@@ -20,12 +20,12 @@ const App = () => {
 				Hi
 			</header>
 			<ResourceList />
-			<ButtonGroup groupType='MATTER'/>
+			<ButtonGroup groupType='MATTER' />
 			<div>
-				<div>
+				<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 					Upgrades
 				</div>
-				<ButtonGroup groupType='UPGRADES'/>
+				<ButtonGroup groupType='UPGRADES' />
 			</div>
 		</div>
 	);

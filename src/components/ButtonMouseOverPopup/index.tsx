@@ -1,12 +1,30 @@
 import React from 'react';
-import { COSTS } from '../../constants';
 
 interface IMousePopUp {
     open: boolean;
-    data?: any;
+    data: IPopup;
 }
 
+export interface IPopup {
+	description?: string;
+	costs: { [key: string]: number };
+};
+
 const MousePopUp = (props: IMousePopUp) => {
+
+    const renderCosts = (costs: { [key: string]: number }) => {
+        const costsArr = [];
+        for (const [key, value] of Object.entries(costs)) {
+            const newElement = (
+                <div>
+                    {key} : {value}
+                </div>
+            );
+            costsArr.push(newElement);
+        }
+
+        return costsArr
+    };
 
     return (
         <div style={{ 
@@ -18,7 +36,8 @@ const MousePopUp = (props: IMousePopUp) => {
             backgroundColor: 'white',
             zIndex: 5
             }}>
-            Hi
+            {props.data.description}
+            {renderCosts(props.data.costs)}
         </div>
     )
 };

@@ -12,6 +12,7 @@ export interface IDeltas {
     nucleotide: number;
     peptide: number;
     protein: number;
+    collagen: number;
 }
 
 const deltas: IDeltas = {
@@ -27,7 +28,8 @@ const deltas: IDeltas = {
     glucose: 0,
     nucleotide: 0,
     peptide: 0,
-    protein: 0
+    protein: 0,
+    collagen: 0
 }
 
 export default deltas;

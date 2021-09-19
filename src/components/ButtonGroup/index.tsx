@@ -4,7 +4,7 @@ import { GameStateContext, UpgradesContext } from '../../contexts';
 import GameStateFunctions from '../../GameStateFunctions';
 
 interface IBGroup {
-
+	groupType: 'MATTER' | 'UPGRADES';
 };
 
 interface IButtons {
@@ -30,6 +30,14 @@ const ButtonGroup = (props: IBGroup) => {
 		{ label: 'Create amino acid', onClick: GameStateInterface.createAminoAcid, hidden: !Upgrades.covalentBonds },
 	];
 
+	const UPGRADE_BUTTONS: Array<IButtons> = [
+		{ label: 'Electrons', onClick: GameStateInterface.upgradesElectrons, hidden: Upgrades.electrons },
+		{ label: 'Covalent Bonds', onClick: GameStateInterface.upgradesCovalentBonds, hidden: Upgrades.covalentBonds },
+		{ label: 'Peptide Bonds', onClick: GameStateInterface.upgradesPeptideBonds, hidden: Upgrades.peptideBonds },
+		{ label: 'DNA', onClick: GameStateInterface.upgradesDNA, hidden: Upgrades.DNA },
+		{ label: 'Enzymes', onClick: GameStateInterface.upgradesEnzymes, hidden: Upgrades.enzymes },
+	];
+
 
 	const renderButtons = (buttons: Array<IButtons>) => {
 		const buttonGroup = buttons.map(ele => {
@@ -38,15 +46,21 @@ const ButtonGroup = (props: IBGroup) => {
 					label={ele.label}
 					onClick={ele.onClick}
 					hidden={ele.hidden}
+					popUpData={{}}
 				/>
 			)
 		});
 		return buttonGroup
 	};
 
+	const pickButtonGroupToRender = (grpType: 'MATTER' | 'UPGRADES') => {
+		if (grpType === 'MATTER') return renderButtons(BUTTONS);
+		else return renderButtons(UPGRADE_BUTTONS);
+	};
+
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-			{renderButtons(BUTTONS)}
+			{pickButtonGroupToRender(props.groupType)}
 		</div>
 	)
 };

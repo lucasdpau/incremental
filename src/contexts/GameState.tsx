@@ -31,6 +31,8 @@ interface IGSContext {
     setPeptideCount: Dispatch<SetStateAction<number>>;
     proteinCount: number;
     setProteinCount: Dispatch<SetStateAction<number>>;
+    collagenCount: number;
+    setCollagenCount: Dispatch<SetStateAction<number>>;
 };
 
 export const GameStateContext = createContext<IGSContext>({} as IGSContext);
@@ -50,6 +52,7 @@ export const GameStateContextProvider = (props: any) => {
     const [nucleotideCount, setNucleotideCount] = useState(0);
     const [peptideCount, setPeptideCount] = useState(0);
     const [proteinCount, setProteinCount] = useState(0);
+    const [collagenCount, setCollagenCount] = useState(0);
 
     const applyDeltas = (deltas: IDeltas) => {
         setProtonCount(prev => prev + deltas.protons);
@@ -65,6 +68,7 @@ export const GameStateContextProvider = (props: any) => {
         setNucleotideCount(prev => prev + deltas.nucleotide);
         setPeptideCount(prev => prev + deltas.peptide);
         setProteinCount(prev => prev + deltas.protein);
+        setCollagenCount(prev => prev + deltas.collagen);
     };
 
     const defaultObj: IGSContext = {
@@ -96,6 +100,8 @@ export const GameStateContextProvider = (props: any) => {
         setPeptideCount: setPeptideCount,
         proteinCount: proteinCount,
         setProteinCount: setProteinCount,
+        collagenCount: collagenCount,
+        setCollagenCount:setCollagenCount,
         applyDeltas: applyDeltas,
     };
 

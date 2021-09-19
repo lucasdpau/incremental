@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ButtonMouseOverPopup } from '..';
 import './styles.css';
 
 interface IButton {
@@ -6,9 +7,12 @@ interface IButton {
     hidden?: boolean;
     onClick: (arg?: any) => void;
     label: string;
+    popUpData: any;
 };
 
 const Button = (props: IButton) => {
+    const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+
     if (props.hidden) return <></>;
 
     const handleClick = () => {
@@ -16,7 +20,7 @@ const Button = (props: IButton) => {
     };
     const handleKeyPress = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter') props.onClick();
-    }
+    };
 
     return (
         <div
@@ -24,8 +28,14 @@ const Button = (props: IButton) => {
             onKeyPress={handleKeyPress}
             className='button'
             tabIndex={1}
+            onMouseEnter={() => setIsPopUpOpen(true)}
+            onMouseLeave={() => setIsPopUpOpen(false)}
         >
             {props.label}
+            <ButtonMouseOverPopup
+                open={isPopUpOpen}
+                data={props.popUpData}
+            />
         </div>
     )
 };

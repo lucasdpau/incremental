@@ -5,7 +5,7 @@ export const GAME_CONFIG = {
 type COST_ITEMS = 'PROTON' | 'NEUTRON' | 'HYDROGEN_ATOM' | 'CARBON_ATOM' | 'NITROGEN_ATOM' | 'OXYGEN_ATOM'
 
 
-type ICosts = {
+export type ICosts = {
     [key in COST_ITEMS]: { [key: string]: number };
 }
 

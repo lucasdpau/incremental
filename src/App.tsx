@@ -7,22 +7,7 @@ import { GAME_CONFIG } from './constants';
 const App = () => {
 	const GameState = useContext(GameStateContext);
 	const Upgrades = useContext(UpgradesContext);
-
-	const handleElectronButton = () => {
-		Upgrades.setElectrons(true);
-		// remove resources cost
-	};
-
-	const handleCovalentButton = () => {
-		Upgrades.setCovalentBonds(true);
-		// remove resources cost
-	};
-
-	const handlePeptideBondsButton = () => {
-		Upgrades.setPeptideBonds(true);
-		// remove costs
-	};
-
+	
 	useEffect(() => {
 		// loop to auto increment values
 		const intervalId = setInterval(() => GameState.applyDeltas(Deltas), GAME_CONFIG.TICK_DURATION);
@@ -35,21 +20,12 @@ const App = () => {
 				Hi
 			</header>
 			<ResourceList />
-			<ButtonGroup />
+			<ButtonGroup groupType='MATTER'/>
 			<div>
 				<div>
 					Upgrades
 				</div>
-				<Button
-					label='Electrons'
-					onClick={handleElectronButton}
-					hidden={Upgrades.electrons}
-				/>
-				<Button
-					label='Covalent Bonds'
-					onClick={handleCovalentButton}
-					hidden={Upgrades.covalentBonds}
-				/>
+				<ButtonGroup groupType='UPGRADES'/>
 			</div>
 		</div>
 	);
